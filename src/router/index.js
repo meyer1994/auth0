@@ -5,6 +5,9 @@ import HomeView from '@/views/HomeView'
 import ProfileView from '@/views/ProfileView'
 import CallbackView from '@/views/CallbackView'
 
+import AuthGuard from './auth.guard'
+import CheckGuard from './check.guard'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -16,7 +19,8 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: ProfileView
+    component: ProfileView,
+    beforeEnter: AuthGuard
   },
   {
     path: '/',
@@ -28,5 +32,7 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
+router.beforeEach(CheckGuard)
 
 export default router

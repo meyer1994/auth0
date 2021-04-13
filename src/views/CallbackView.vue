@@ -2,17 +2,27 @@
   <div></div>
 </template>
 <script>
-import { CHECK_AUTH } from '@/store/actions.type'
+import auth0 from '@/commons/auth.api'
 
 /**
  * This component just contains the callback logic
  */
 export default {
   async beforeCreate () {
-    const { to } = await this.$store.dispatch(CHECK_AUTH)
-    if (to) {
-      this.$router.replace(to)
+    // Redirected back from auth0
+    const hasCode = window.location.search.includes('code=')
+    const hasState = window.location.search.includes('state=')
+    if (!(hasCode && hasState)) {
+      return
     }
+
+    const { appState: { to } } = await auth0.handleRedirectCallback()
+
+    // Adapted from here
+    //    https://github.com/auth0/auth0-spa-js/issues/384#issuecomment-602586642
+    window.history.replaceState({}, document.title, window.location.pathname)
+
+    this.$router.replace(to)
   }
 }
 </script>
