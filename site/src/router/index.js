@@ -1,10 +1,7 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 import AuthGuard from './guard.auth'
 import CallbackGuard from './guard.callback'
-
-Vue.use(VueRouter)
 
 const routes = [
   {
@@ -25,8 +22,7 @@ const routes = [
   }
 ]
 
-const router = new VueRouter({
-  routes
+export default createRouter({
+  routes,
+  history: createWebHashHistory()
 })
-
-export default router
