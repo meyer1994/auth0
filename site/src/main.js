@@ -8,8 +8,11 @@ import 'sakura.css/css/sakura-dark.css'
 
 Vue.config.productionTip = false
 
-new Vue({
+const app = new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+})
+
+window.app = app
+app.$mount('#app')
