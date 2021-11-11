@@ -1,4 +1,4 @@
-package io.meyer1994.auth0.serv;
+package io.meyer1994.auth0;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,7 @@ import java.net.http.HttpResponse;
 
 @Slf4j
 @Service
-public class Auth0Serv {
+public class Auth0 {
     @Autowired
     private ObjectMapper mapper;
 
@@ -25,7 +25,7 @@ public class Auth0Serv {
 
     protected HttpClient client = HttpClient.newHttpClient();
 
-    public Auth0User fetchUser(final String token) {
+    public User fetchUser(final String token) {
         var req = HttpRequest.newBuilder()
                 .GET()
                 .uri(this.issuer)
@@ -46,7 +46,7 @@ public class Auth0Serv {
         }
 
         try {
-            return this.mapper.readValue(res.body(), Auth0User.class);
+            return this.mapper.readValue(res.body(), User.class);
         } catch (IOException e) {
             log.error("Error parsing response from Auth0", e);
             throw this.unauth("Error parsing response from Auth0");

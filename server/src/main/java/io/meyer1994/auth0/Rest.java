@@ -1,7 +1,5 @@
 package io.meyer1994.auth0;
 
-import io.meyer1994.auth0.serv.Auth0Serv;
-import io.meyer1994.auth0.serv.Auth0User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +14,10 @@ import java.util.Map;
 @RestController
 public class Rest {
     @Autowired
-    private Auth0Serv auth0;
+    private Auth0 auth0;
 
     @GetMapping("/authenticated")
-    public Map<String, String> auth(@ModelAttribute Auth0User user) {
+    public Map<String, String> auth(@ModelAttribute User user) {
         log.debug("USER: {}", user);
         return Map.of("data", "this is from an authenticated request");
     }
@@ -30,7 +28,7 @@ public class Rest {
     }
 
     @ModelAttribute
-    protected Auth0User user(@RequestHeader("Authorization") String token) throws IOException, InterruptedException {
+    protected User user(@RequestHeader("Authorization") String token) throws IOException, InterruptedException {
         return this.auth0.fetchUser(token);
     }
 }

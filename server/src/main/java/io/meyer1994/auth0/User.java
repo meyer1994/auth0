@@ -1,4 +1,4 @@
-package io.meyer1994.auth0.serv;
+package io.meyer1994.auth0;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import java.net.URL;
 import java.time.Instant;
 
 @Data
-public class Auth0User {
+public class User {
     private String given_name;
     private String family_name;
     private String nickname;

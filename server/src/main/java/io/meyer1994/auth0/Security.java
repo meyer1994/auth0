@@ -1,4 +1,4 @@
-package io.meyer1994.auth0.conf;
+package io.meyer1994.auth0;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
