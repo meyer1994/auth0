@@ -5,7 +5,10 @@ import store from '@/store'
  */
 export default async (to, from, next) => {
   if (store.state.auth.user === null) {
+    console.log('User not logged in. Declining:', to)
     return false
   }
+
+  console.log('User logged in. Accepting:', to)
   return next()
 }

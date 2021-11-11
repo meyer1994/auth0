@@ -20,22 +20,28 @@ const mutations = {
 
 const actions = {
   async [LOGIN] (ctx, state = {}) {
+    console.log('Logging in')
     await auth0.loginWithRedirect({ appState: state })
   },
 
   async [LOGOUT] (ctx) {
+    console.log('Purging state')
     ctx.commit(SET_USER, null)
     ctx.commit(SET_ERROR, null)
+    console.log('Logging out from Auth0')
     await auth0.logout()
   },
 
   async [CALLBACK] (ctx) {
     try {
+      console.log('Fetching user info from Auth0')
       const user = await auth0.getUser()
+      console.log('Updating user state')
       ctx.commit(SET_USER, user)
       ctx.commit(SET_ERROR, null)
     } catch (e) {
       console.error(e)
+      console.log('Updating error state')
       ctx.commit(SET_USER, null)
       ctx.commit(SET_ERROR, e)
     }

@@ -3,7 +3,7 @@
     <button @click="login"> Login </button>
     <button @click="logout"> Logout </button>
     <br>
-    <router-link to="/profile"> Profile </router-link>
+    <router-link to="/profile"> Profile (requires auth) </router-link>
   </div>
 </template>
 
