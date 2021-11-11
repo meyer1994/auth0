@@ -14,8 +14,12 @@ public class Security extends WebSecurityConfigurerAdapter {
         http.formLogin().disable();
         http.httpBasic().disable();
 
+        // Cors
+        http.cors();
+
         // OAuth2
-        http.oauth2ResourceServer().jwt();
+        http.oauth2ResourceServer()
+                .jwt();
 
         // Stateless
         http.sessionManagement()
