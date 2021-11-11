@@ -4,7 +4,7 @@ const auth0 = new Auth0Client({
   // Defined on Applications section of Auth0
   domain: 'dev-1ymtsnz6.us.auth0.com',
   client_id: '41TAaJZdJzt6Q0bnhBHgEsomhLhDdpSn',
-  redirect_uri: 'http://localhost:8000/#/callback',
+  redirect_uri: `${window.location.origin}/#/callback`,
 
   // Create an API on API section of Auth0
   audience: 'https://localhost:8080'
