@@ -1,5 +1,4 @@
 <template>
-<div>
   <h1> Auth0 </h1>
   <hr>
 
@@ -7,12 +6,10 @@
     <h2> Login </h2>
     <p> This secion only shows login/logout interactions directly with Auth0 </p>
 
-    <p>
-      <button @click="login"> Login </button>
-      <button @click="logout"> Logout </button>
-    </p>
+    <p><button @click="login"> Login </button></p>
+    <p><button @click="logout"> Logout </button></p>
 
-    <p> User logged in: <strong> {{ isLogged ? '✔' : '✖' }} </strong></p>
+    <p> User logged in: <strong>{{ isLogged ? '✔' : '✖' }}</strong></p>
   </section>
 
   <section>
@@ -21,12 +18,7 @@
 
     <details>
       <summary> User (JSON) </summary>
-      <pre> {{ $store.state.auth.user || 'No data' }} </pre>
-    </details>
-
-    <details>
-      <summary> Error (JSON) </summary>
-      <pre> {{ $store.state.auth.error || 'No error' }} </pre>
+      <pre>{{ $store.state.auth.user || 'No data' }}</pre>
     </details>
   </section>
 
@@ -37,7 +29,16 @@
     <p><router-link to="secure"> Secured </router-link></p>
     <p><router-link to="insecure"> Not secured </router-link></p>
   </section>
-</div>
+
+  <section>
+    <h2> Authenticated API </h2>
+    <p> This section shows some requests to authenticated API endpoints </p>
+
+    <p><button @click="authenticated"> Authenticated </button></p>
+    <p><button @click="unauthenticated"> Unauthenticated </button></p>
+
+    <pre>{{ data ? data : 'No data' }}</pre>
+  </section>
 </template>
 
 <script>
@@ -47,11 +48,14 @@ import auth0 from '@/auth.api'
 
 import { LOGIN, LOGOUT } from '@/store/type.actions'
 
+const client = axios.create({
+  baseURL: 'http://localhost:8080'
+})
+
 export default {
   name: 'HomeView',
 
   data: () => ({
-    pong: null,
     data: null
   }),
 
@@ -68,19 +72,18 @@ export default {
     logout () {
       this.$store.dispatch(LOGOUT)
     },
-    async ping () {
-      console.log('Calling /ping')
-      this.pong = await axios.get('http://localhost:8080/ping')
+    async unauthenticated () {
+      console.log('Calling /unauthenticated')
+      const res = await client.get('/unauthenticated')
+      this.data = res.data
     },
-    async auth () {
-      console.log('Calling /auth')
+    async authenticated () {
+      console.log('Calling /authenticated')
       const token = await auth0.getTokenSilently()
-      console.log(token)
-      this.data = await axios.get('http://localhost:8080/auth', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+      const res = await client.get('/authenticated', {
+        headers: { Authorization: `Bearer ${token}` }
       })
+      this.data = res.data
     }
   }
 }

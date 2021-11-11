@@ -3,20 +3,17 @@ package io.meyer1994.auth0;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class Rest {
-    @GetMapping("/ping")
-    public String ping() {
-        return "pong";
+    @GetMapping("/authenticated")
+    public Map<String, String> ping() {
+        return Map.of("data", "this is from an authenticated request");
     }
 
-    @GetMapping("/auth")
-    public String auth() {
-        return "nice";
-    }
-
-    @GetMapping("/other")
-    public String other() {
-        return "other";
+    @GetMapping("/unauthenticated")
+    public Map<String, String> auth() {
+        return Map.of("data", "this is from an unauthenticated request");
     }
 }

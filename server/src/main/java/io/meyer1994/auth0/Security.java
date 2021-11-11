@@ -39,8 +39,8 @@ public class Security extends WebSecurityConfigurerAdapter {
 
         // Endpoints
         http.authorizeRequests()
-                .mvcMatchers("/ping").permitAll()
-                .mvcMatchers("/auth").authenticated()
+                .mvcMatchers("/authenticated").authenticated()
+                .mvcMatchers("/unauthenticated").permitAll()
                 .anyRequest().authenticated();
     }
 
