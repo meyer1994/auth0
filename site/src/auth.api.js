@@ -2,7 +2,7 @@ import { Auth0Client } from '@auth0/auth0-spa-js'
 
 const redirectUri = process.env.NODE_ENV === 'production'
   ? 'https://meyer1994.github.io/auth0/#/callback'
-  : 'http://localhost:8080'
+  : 'http://localhost:8000/#/callback'
 
 const auth0 = new Auth0Client({
   // Defined on Applications section of Auth0
