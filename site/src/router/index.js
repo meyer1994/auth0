@@ -1,12 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import HomeView from '@/views/HomeView'
-import ProfileView from '@/views/ProfileView'
-import CallbackView from '@/views/CallbackView'
-
-import AuthGuard from './auth.guard'
-import CheckGuard from './check.guard'
+import AuthGuard from './guard.auth'
+import CallbackGuard from './guard.callback'
 
 Vue.use(VueRouter)
 
@@ -14,25 +10,23 @@ const routes = [
   {
     path: '/callback',
     name: 'Callback',
-    component: CallbackView
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: ProfileView,
-    beforeEnter: AuthGuard
+    beforeEnter: CallbackGuard
   },
   {
     path: '/',
     name: 'Home',
-    component: HomeView
+    component: () => import('@/views/HomeView')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    beforeEnter: AuthGuard,
+    component: () => import('@/views/ProfileView')
   }
 ]
 
 const router = new VueRouter({
   routes
 })
-
-router.beforeEach(CheckGuard)
 
 export default router

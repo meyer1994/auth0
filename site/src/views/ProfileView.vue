@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <div>
     <router-link to="/"> Home </router-link>
-    <p> {{ $store.state.auth }} </p>
+    <pre> {{ $store.state.auth }} </pre>
   </div>
 </template>
 
