@@ -26,8 +26,8 @@
     <h2> Authenticated routes </h2>
     <p> This section shows use of authenticated routes in Vue </p>
 
-    <p><router-link to="secure"> Secured </router-link></p>
-    <p><router-link to="insecure"> Not secured </router-link></p>
+    <p><button @click="$router.push('secure')"> Secured </button></p>
+    <p><button @click="$router.push('insecure')"> Not secured </button></p>
   </section>
 
   <section>

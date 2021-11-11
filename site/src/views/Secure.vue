@@ -3,7 +3,7 @@
   <hr>
   <h2> I am a secured route </h2>
   <p> Try logging out and accessing it again </p>
-  <p><router-link to="/"> Back </router-link></p>
+  <p><button @click="$router.go(-1)"> Back </button></p>
 </template>
 
 <script>

@@ -2,7 +2,7 @@
   <h1> Auth0 </h1>
   <hr>
   <h2> I am an insecure route </h2>
-  <p><router-link to="/"> Back </router-link></p>
+  <p><button @click="$router.go(-1)"> Back </button></p>
 </template>
 
 <script>
