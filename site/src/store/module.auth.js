@@ -29,7 +29,7 @@ const actions = {
     ctx.commit(SET_USER, null)
     ctx.commit(SET_ERROR, null)
     console.log('Logging out from Auth0')
-    await auth0.logout()
+    await auth0.logout({ returnTo: 'http://localhost:8000' })
   },
 
   async [CALLBACK] (ctx) {

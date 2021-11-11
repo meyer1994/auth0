@@ -12,13 +12,18 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/HomeView')
+    component: () => import('@/views/Home')
   },
   {
-    path: '/profile',
-    name: 'Profile',
+    path: '/secure',
+    name: 'Secure',
     beforeEnter: AuthGuard,
-    component: () => import('@/views/ProfileView')
+    component: () => import('@/views/Secure')
+  },
+  {
+    path: '/insecure',
+    name: 'Insecure',
+    component: () => import('@/views/Insecure')
   }
 ]
 
