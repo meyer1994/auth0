@@ -3,7 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 
-    id 'io.freefair.lombok' version '6.3.0-rc1'
+    id 'io.freefair.lombok' version '6.3.0'
 }
 
 group = 'io.meyer1994'
