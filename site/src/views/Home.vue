@@ -42,15 +42,9 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 import auth0 from '@/auth.api'
 
 import { LOGIN, LOGOUT } from '@/store/type.actions'
-
-const client = axios.create({
-  baseURL: 'http://localhost:8080'
-})
 
 export default {
   name: 'HomeView',
@@ -69,21 +63,25 @@ export default {
     login () {
       this.$store.dispatch(LOGIN, { origin: this.$route.path })
     },
+
     logout () {
       this.$store.dispatch(LOGOUT)
     },
-    async unauthenticated () {
+
+    unauthenticated () {
       console.log('Calling /unauthenticated')
-      const res = await client.get('/unauthenticated')
-      this.data = res.data
+      fetch('/unauthenticated')
+        .then(i => i.json())
+        .then(i => (this.data = i))
     },
+
     async authenticated () {
       console.log('Calling /authenticated')
       const token = await auth0.getTokenSilently()
-      const res = await client.get('/authenticated', {
-        headers: { Authorization: `Bearer ${token}` }
-      })
-      this.data = res.data
+      const headers = { Authorization: `Bearer ${token}` }
+      fetch('/authenticated', { headers })
+        .then(i => i.json())
+        .then(i => (this.data = i))
     }
   }
 }

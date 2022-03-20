@@ -8,6 +8,6 @@
 
 <script>
 export default {
-  name: 'Secure'
+  name: 'SecureView'
 }
 </script>

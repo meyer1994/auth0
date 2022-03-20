@@ -7,6 +7,6 @@
 
 <script>
 export default {
-  name: 'Insecure'
+  name: 'InsecureView'
 }
 </script>
