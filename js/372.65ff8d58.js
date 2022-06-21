@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkauth0"]=self["webpackChunkauth0"]||[]).push([[372],{6372:function(n,u,e){e.r(u),e.d(u,{default:function(){return i}});var r=e(6252);const t=(0,r._)("h1",null," Auth0 ",-1),l=(0,r._)("hr",null,null,-1),a=(0,r._)("h2",null," I am an insecure route ",-1);function c(n,u,e,c,o,h){return(0,r.wg)(),(0,r.iD)(r.HY,null,[t,l,a,(0,r._)("p",null,[(0,r._)("button",{onClick:u[0]||(u[0]=u=>n.$router.go(-1))}," Back ")])],64)}var o={name:"InsecureView"},h=e(3744);const s=(0,h.Z)(o,[["render",c]]);var i=s}}]);
+//# sourceMappingURL=372.65ff8d58.js.map
